@@ -1,0 +1,10 @@
+<?php
+
+namespace DummyNamespace;
+
+use Olymbytes\Presenters\Presenter;
+
+class DummyClass extends Presenter
+{
+    //
+}
