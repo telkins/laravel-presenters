@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace Olymbytes\Presenters\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 
-class FilterCommand extends GeneratorCommand
+class PresenterCommand extends GeneratorCommand
 {
     /**
      * The console command name.
