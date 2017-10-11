@@ -8,6 +8,6 @@ class OrderPresenter extends Presenter
 {
     public function title()
     {
-        return strtoupper($this->model->title);
+        return strtoupper($this->title);
     }
 }

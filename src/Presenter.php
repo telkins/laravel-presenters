@@ -18,12 +18,22 @@ abstract class Presenter
         $this->model = $model;
     }
 
-    public function __get($property)
+    private function getQualifiedMethods()
     {
-        if (method_exists($this, $property)) {
-            return call_user_func([$this, $property]);
+        $class = get_called_class();
+        $methods = get_class_methods($class);
+        $currentMethod = __FUNCTION__;
+        return array_filter($methods, function ($method) use ($currentMethod) {
+            return substr($method, 0, 2) !== '__' && $method !== $currentMethod;
+        });
+    }
+
+    public function __get($key)
+    {
+        if (in_array($key, $this->getQualifiedMethods())) {
+            return call_user_func([$this, $key]);
         }
-        
-        throw new Exception(sprintf('%s does not respond to the "%s" property or method.', static::class, $property));
+
+        return $this->model->{$key};
     }
 }
