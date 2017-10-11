@@ -1,8 +1,9 @@
-<?php 
+<?php
 
 namespace Olymbytes\Presenters;
 
 use Illuminate\Support\ServiceProvider;
+use Olymbytes\Presenters\Commands\PresenterCommand;
 
 class PresentersServiceProvider extends ServiceProvider
 {
@@ -18,6 +19,12 @@ class PresentersServiceProvider extends ServiceProvider
         ], 'config');
 
         $this->mergeConfigFrom(__DIR__ . '/../config/presenters.php', 'presenters');
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                PresenterCommand::class,
+            ]);
+        }
     }
 
     /**
